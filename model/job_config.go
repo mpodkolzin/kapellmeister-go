@@ -1,6 +1,12 @@
 package model
 
+type Schedule struct {
+	StartTime string `json:"startTime"`
+	EndTime   string `json:"endTime"`
+	TimeSpan  string `json:"timeSpan"`
+}
+
 type Job struct {
-	StartTime string `json:"StartTime"`
-	EndTime   string `json:"EndTime"`
+	ID             string   `json:"id"`
+	ScheduleConfig Schedule `json:"schduleConfig"`
 }

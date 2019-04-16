@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"kapellmeister-go/task"
 	"net/http"
 	"os/exec"
+	"sync"
 )
 
 func PingHandler(w http.ResponseWriter, r *http.Request) {
@@ -25,7 +27,11 @@ func main() {
 		panic(err.Error())
 	}
 
-	go serv.Run()
+	wg := sync.WaitGroup{}
 
-	fmt.Scanln()
+	task.Spawn(&wg, serv.Run)
+
+	wg.Wait()
+
+	//fmt.Scanln()
 }
